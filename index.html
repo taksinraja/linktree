@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taksin Raja</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 6px;
+            font-family:  "Inter Display Semi Bold", sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        /* Header styles */
+        .header {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 565px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .hire-me-btn {
+            background-color: #000;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-weight: bold;
+            border: 1px solid #c1c1c1;
+        }
+        .hire-me-btn:hover {
+            outline: solid 5px #c0c0c062;
+            transition: all 0.3s ease;
+        }
+        button a{
+            text-decoration: none;
+            color: white;
+        }
+        .wrapper{
+            display: none;
+        }
+
+        /* Content styles */
+        
+        .content {
+            margin-top: 30px;
+            padding: 10px 20px;
+        }
+
+        .position{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin-left: 0.7rem; margin-right: 0.7rem;
+            width: 100%;
+        }
+
+        .position-title {
+            font-weight: 500;
+        }
+
+        .available {
+            background-color: #5cc25f48;
+            padding: 6px 8px;
+            border-radius: 15px;
+            color: #3f9b42;
+            font-size: 0.6em;
+        }
+        
+        .available2{
+            display: none;
+        }
+
+        .name-pic{
+            display: flex;
+            align-items: center;
+            padding-top: 2rem; padding-bottom: 2rem;
+        }
+        .name-about {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        h1 {
+            margin: 0 0 10px 0;
+            font-size: 2em;
+        }
+        .subtitle {
+            color: #666;
+            margin: 0;
+        }
+        .avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            padding: 0rem;
+        }
+
+
+        /* Media queries */
+        @media (max-width: 440px) {
+            .content {
+                margin-top: 20px;
+                padding: 10px 20px;
+            }
+            .content .position{
+                display: flex;
+                align-items: center;
+                text-align: center;
+                justify-content: space-between;
+                padding-bottom: 1rem;
+                margin-left: 0.6rem; margin-right: 0.6rem;
+            }
+
+            @media (max-width: 355px) {
+                .content .position{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-left: 0.4rem; margin-right: 0.4rem;
+                }
+                h1 {
+                    margin: 0 0 10px 0;
+                    font-size: 1.8em;
+                }
+                .position-title {
+                    font-size: 0.9rem;
+                    font-weight: 500;
+                }
+                .available {
+                    display: none;
+                }
+                .available2{
+                    display: flex;
+                    font-size: 0.9rem;
+                    background-color: #5cc25f48;
+                    padding: 4px;
+                    width: 22px;
+                    border-radius: 50%;
+                    color: #3f9b42;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .cta-button {
+                    padding: 5px 10px;
+                }
+
+            }
+    
+            .position{
+                font-size: 1rem;
+            }
+            .position-title {
+                font-weight: 500;
+                font-size: 1.1rem;
+            }
+            .available {
+                background-color: #5cc25f48;
+                padding: 6px 8px;
+                border-radius: 14px;
+                color: #3f9b42;
+                font-size: 0.6em;
+            }
+    
+            .name-pic{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .name-about {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .subtitle {
+                color: #666;
+                text-align: center;
+                font-size: 0.9rem;
+            }
+
+        }
+        /* Products styles */
+        .products {
+            border-radius: 12px;
+        }
+        .product-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: white;
+            border: 1px solid #c0c0c062;
+            border-radius: 12px;
+            margin-bottom: 15px;
+
+        }
+        .product-item:hover {
+            outline: solid 5px #c0c0c062;
+            transition: all 0.3s ease;
+
+        }
+        .products a{
+            text-decoration: none;
+            color: #000;
+        }
+        .product-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            margin-right: 15px;
+            background-color: #f6f6f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .product-icon img {
+            width: 70%;
+            height: 70%;
+        }
+        .product-info {
+            flex-grow: 1;
+        }
+        .product-title {
+            font-weight: bold;
+        }
+        .product-type {
+            color: #666;
+            font-size: 0.8em;
+        }
+
+        /* CTA styles */
+        .cta-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: start;
+            margin-top: 20px;
+        }
+        .cta-button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            outline: solid 5px #c0c0c062;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="position">
+            <div class="position-title">Web Developer</div>
+            <div class="available">● AVAILABLE FOR WORK</div>
+            <div class="available2">●</div>
+        </div>
+
+        <div class="name-pic">
+            <img src="images/profile.jpeg" alt="Brian Do" class="avatar">
+            <div class="name-about">
+                <h1>I'm Taksin Raja</h1>
+                <p class="subtitle">Web Developer and ui/ux designer from kolkata. Need help! feel free to contact.</p>
+                <div class="cta-buttons">
+                    <button class="cta-button hire-me-btn">
+                    <a href="hireme.html">Hire Me</a></button>
+                    <script>
+                        function copyEmail(buttonId) {
+                            // Create a temporary input element to hold the email
+                            const tempInput = document.createElement('input');
+                            tempInput.value = 'taksinraja@gmail.com';
+                            document.body.appendChild(tempInput);
+                              
+                            // Select the email text and copy it to clipboard
+                            tempInput.select();
+                            tempInput.setSelectionRange(0, 99999); // For mobile devices
+                            document.execCommand('copy');
+                              
+                            // Remove the temporary input element
+                            document.body.removeChild(tempInput);
+                          
+                            // Change button text to "Copied!" based on the button id
+                            const copyButton = document.getElementById(buttonId);
+                            copyButton.textContent = "Copied!";
+                          
+                            // Revert back to "Copy Email" after 2 seconds
+                            setTimeout(() => {
+                            copyButton.textContent = "Copy Email";
+                            }, 2000);
+                        }
+                    </script>
+                          
+                <button id="copyButton1" class="cta-button" style="background-color: white; color: black; border: 1px solid black;" onclick="copyEmail('copyButton1')">Copy Email</button>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main class="content">
+            <div class="products">
+                <a href="https://www.instagram.com/_taksin_/">
+                    <div class="product-item">
+                        <div class="product-icon">
+                            <img src="images/instagram-icon.png" alt="" srcset="">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">Instagram</div>
+                        </div>
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                    </div>
+                </a>
+                <a href="https://www.facebook.com/share/V1GVNNQrj44kQUV9/">
+                    <div class="product-item">
+                        <div class="product-icon">
+                            <img src="images/facebook-app-round-icon.png" alt="" srcset="">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">Facebook</div>
+                        </div>
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                    </div>
+                </a>
+                <a href="https://github.com/taksinraja">
+                    <div class="product-item">
+                        <div class="product-icon">
+                            <img src="images/github-icon.png" alt="" srcset="">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">GitHub</div>
+                        </div>
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/in/taksinraja/">
+                    <div class="product-item">
+                        <div class="product-icon">
+                            <img src="images/linkedin-square-icon.png" alt="" srcset="">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">Linkedin</div>
+                        </div>
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                    </div>
+                </a>
+                <a href="https://www.snapchat.com/add/taksin_raja01?share_id=RE302TWsGQk&locale=en-IN">
+                    <div class="product-item">
+                        <div class="product-icon">
+                            <img src="images/snapchat-line-icon.png" alt="" srcset="">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">Snapchat</div>
+                        </div>
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                    </div>
+                </a>
+                <a href="https://taksinraja.netlify.app/">
+                    <div class="product-item">
+                        <div class="product-icon">
+                            <img src="images/portfolio.png" alt="" srcset="">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">Portfolio</div>
+                        </div>
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                    </div>
+                </a>
+                <a href="https://discord.com/channels/968230643282640927/968230901337165824">
+                    <div class="product-item">
+                        <div class="product-icon">
+                            <img src="images/discord-black-icon.png" alt="" srcset="">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">Discord</div>
+                        </div>
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                    </div>
+                </a>
+                <a href="https://x.com/Baris_764">
+                    <div class="product-item">
+                        <div class="product-icon">
+                            <img src="images/x-social-media-black-icon.png" alt="" srcset="">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">X</div>
+                        </div>
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                    </div>
+                </a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
