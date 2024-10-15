@@ -15,7 +15,7 @@ Welcome to my personal Linktree! This is a simple and clean page where you can f
 ## Live Demo
 
 You can check out the live version of the website here:
-[Live Demo]((https://taksinraja.github.io/linktree/))
+[Live Demo](https://taksinraja.github.io/linktree/)
 
 ## Technologies Used
 
